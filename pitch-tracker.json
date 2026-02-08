@@ -1,13 +1,13 @@
 {
   "metadata": {
     "created": "2026-02-04",
-    "lastUpdated": "2026-02-05T20:11:00Z",
+    "lastUpdated": "2026-02-05T23:22:00Z",
     "system": "MVP Studio Outreach",
     "cadence": "5 per hour",
     "calendly": "https://calendly.com/alex-qxip/alex-calendly"
   },
   "stats": {
-    "totalDrafted": 80,
+    "totalDrafted": 95,
     "totalSent": 0,
     "totalReplies": 0,
     "callsBooked": 0
@@ -268,6 +268,38 @@
           "contact": "Brian Barnes (CEO)",
           "status": "draft",
           "created": "2026-02-05"
+        },
+        {
+          "company": "ReviewTrackers",
+          "industry": "Customer Review / Reputation Management SaaS",
+          "file": "pitches/chicago/033-reviewtrackers.md",
+          "contact": "Chris Campbell (CEO & Founder)",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "LogicGate",
+          "industry": "GRC (Governance, Risk & Compliance) Software",
+          "file": "pitches/chicago/034-logicgate.md",
+          "contact": "Matt Kunkel (CEO & Co-founder)",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "PartySlate",
+          "industry": "Events Marketplace / Wedding Tech",
+          "file": "pitches/chicago/035-partyslate.md",
+          "contact": "Julie Roth Novack (CEO & Co-Founder)",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "Medtelligent (ALIS)",
+          "industry": "Healthcare Tech - Senior Living Software",
+          "file": "pitches/chicago/036-medtelligent.md",
+          "contact": "John Shafaee (Founder & CEO)",
+          "status": "draft",
+          "created": "2026-02-05"
         }
       ],
       "sent": []
@@ -503,6 +535,70 @@
           "contact": "Isaac Oates (CEO & Founder)",
           "status": "draft",
           "created": "2026-02-05"
+        },
+        {
+          "company": "Leapsome",
+          "industry": "HR Tech / People Enablement Platform",
+          "file": "pitches/nyc/030-leapsome.md",
+          "contact": "Jenny von Podewils (Co-CEO & Co-founder)",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "Coconut Software",
+          "industry": "Banking Tech / Appointment Scheduling",
+          "file": "pitches/nyc/031-coconut-software.md",
+          "contact": "Katherine Regnier (CEO & Founder)",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "HiBob",
+          "industry": "HR Tech / SaaS",
+          "file": "pitches/nyc/032-hibob.md",
+          "contact": "Ronni Zehavi (Co-founder & CEO)",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "Opto Investments",
+          "industry": "Fintech / Private Markets",
+          "file": "pitches/nyc/033-opto-investments.md",
+          "contact": "Founding Team",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "Tastewise",
+          "industry": "AI / Consumer Intelligence / F&B",
+          "file": "pitches/nyc/034-tastewise.md",
+          "contact": "Alon Chen (CEO)",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "Healthee",
+          "industry": "Healthcare Tech - AI Benefits Navigation",
+          "file": "pitches/nyc/035-healthee.md",
+          "contact": "Yonatan Amir (CEO & Co-Founder)",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "Maybern",
+          "industry": "Fintech - Fund Finance Software",
+          "file": "pitches/nyc/036-maybern.md",
+          "contact": "Founding Team",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "Runwise",
+          "industry": "Energy Tech - Building Automation",
+          "file": "pitches/nyc/037-runwise.md",
+          "contact": "CEO",
+          "status": "draft",
+          "created": "2026-02-05"
         }
       ],
       "sent": []
@@ -657,6 +753,30 @@
           "industry": "Mental Health / Wellness Tech",
           "file": "pitches/la/019-headspace.md",
           "contact": "Russell Glass (CEO)",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "FloQast",
+          "industry": "Accounting Automation / Close Management SaaS",
+          "file": "pitches/la/020-floqast.md",
+          "contact": "Mike Whitmire (CEO & Co-founder)",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "Golden Hippo",
+          "industry": "Health & Wellness / E-commerce",
+          "file": "pitches/la/021-golden-hippo.md",
+          "contact": "VP Engineering",
+          "status": "draft",
+          "created": "2026-02-05"
+        },
+        {
+          "company": "Doodle Labs",
+          "industry": "Defense Tech / Mesh Networking",
+          "file": "pitches/la/022-doodle-labs.md",
+          "contact": "Nimesh (Founder)",
           "status": "draft",
           "created": "2026-02-05"
         }
