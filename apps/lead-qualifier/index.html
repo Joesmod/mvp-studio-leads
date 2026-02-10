@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Qualifier — Moltslack</title>
+<style>
+  :root { --bg:#0f1117; --card:#1a1d27; --border:#2a2d3a; --text:#e0e0e0; --muted:#888; --accent:#6c63ff; --green:#2ecc71; --orange:#f39c12; --red:#e74c3c; --blue:#3498db; --yellow:#f1c40f; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); padding:20px; max-width:1400px; margin:0 auto; }
+  h1 { font-size:1.8rem; margin-bottom:4px; }
+  .subtitle { color:var(--muted); margin-bottom:24px; }
+  h2 { font-size:1.2rem; margin-bottom:12px; color:var(--accent); }
+
+  /* Layout */
+  .top-bar { display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap; align-items:center; }
+  .top-bar input, .top-bar select { background:#12131a; border:1px solid var(--border); border-radius:8px; padding:10px 14px; color:var(--text); font-size:.9rem; }
+  .top-bar input { flex:1; min-width:200px; }
+  .top-bar select { min-width:160px; }
+  .badge { display:inline-block; padding:2px 10px; border-radius:12px; font-size:.75rem; font-weight:700; }
+  .badge-green { background:#1a3a2a; color:var(--green); }
+  .badge-orange { background:#3a2a1a; color:var(--orange); }
+  .badge-red { background:#3a1a1a; color:var(--red); }
+  .badge-blue { background:#1a2a3a; color:var(--blue); }
+
+  /* Stats */
+  .stats { display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
+  .stat { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 20px; text-align:center; min-width:120px; }
+  .stat .val { font-size:1.6rem; font-weight:800; }
+  .stat .lbl { font-size:.75rem; color:var(--muted); margin-top:2px; }
+
+  /* Table */
+  .table-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:.88rem; }
+  th { background:#12131a; position:sticky; top:0; z-index:1; text-align:left; padding:12px; color:var(--accent); cursor:pointer; user-select:none; white-space:nowrap; }
+  th:hover { color:#fff; }
+  td { padding:10px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+  tr:hover { background:#1e2130; }
+  .score-bar { width:60px; height:8px; background:#222; border-radius:4px; overflow:hidden; display:inline-block; vertical-align:middle; margin-right:6px; }
+  .score-fill { height:100%; border-radius:4px; }
+  .signals { display:flex; flex-wrap:wrap; gap:4px; }
+  .signal { background:#2a1a1a; color:var(--orange); padding:2px 8px; border-radius:6px; font-size:.72rem; }
+  .demo-tag { background:#1a1a3a; color:var(--accent); padding:2px 8px; border-radius:6px; font-size:.78rem; display:inline-block; margin:1px; }
+  .gap-flag { color:var(--red); font-weight:700; }
+  .ready-flag { color:var(--green); }
+  .btn-add { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:10px 20px; cursor:pointer; font-weight:700; font-size:.9rem; }
+  .btn-add:hover { opacity:.85; }
+
+  /* Modal */
+  .modal-bg { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.7); display:none; z-index:10; justify-content:center; align-items:center; }
+  .modal-bg.show { display:flex; }
+  .modal { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px; width:90%; max-width:600px; max-height:90vh; overflow-y:auto; }
+  .modal h2 { margin-bottom:16px; }
+  .form-row { margin-bottom:14px; }
+  .form-row label { display:block; font-weight:600; font-size:.9rem; margin-bottom:4px; }
+  .form-row input, .form-row select, .form-row textarea { width:100%; background:#12131a; border:1px solid var(--border); border-radius:8px; padding:10px; color:var(--text); font-size:.9rem; }
+  .form-row textarea { height:60px; resize:vertical; }
+  .form-actions { display:flex; gap:10px; margin-top:16px; }
+  .form-actions button { padding:10px 20px; border:none; border-radius:8px; cursor:pointer; font-weight:700; }
+  .btn-save { background:var(--green); color:#fff; }
+  .btn-cancel { background:var(--border); color:var(--text); }
+  .chk-row { display:flex; flex-wrap:wrap; gap:10px; }
+  .chk-row label { display:flex; align-items:center; gap:4px; font-weight:400; font-size:.85rem; cursor:pointer; }
+</style>
+</head>
+<body>
+
+<h1>🎯 Lead Qualifier</h1>
+<p class="subtitle">Score, sort, and prioritize leads by fit — company size, manual process signals, demo match, contact completeness</p>
+
+<div class="stats" id="statsBar"></div>
+
+<div class="top-bar">
+  <input type="text" id="search" placeholder="Search leads..." oninput="renderTable()">
+  <select id="filterBucket" onchange="renderTable()">
+    <option value="all">All Leads</option>
+    <option value="ready">Ready to Pitch</option>
+    <option value="research">Needs Research</option>
+  </select>
+  <select id="sortBy" onchange="renderTable()">
+    <option value="score">Sort: Score (High→Low)</option>
+    <option value="name">Sort: Name (A→Z)</option>
+    <option value="employees">Sort: Employees</option>
+    <option value="contact">Sort: Contact Status</option>
+  </select>
+  <button class="btn-add" onclick="openModal()">+ Add Lead</button>
+  <button class="btn-add" style="background:var(--blue)" onclick="exportCSV()">⬇ Export CSV</button>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Score</th>
+        <th>Company</th>
+        <th>Industry</th>
+        <th>Employees</th>
+        <th>Revenue Est.</th>
+        <th>Manual Signals</th>
+        <th>Demo Match</th>
+        <th>Contact</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="leadBody"></tbody>
+  </table>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <h2 id="modalTitle">Add Lead</h2>
+    <div class="form-row"><label>Company Name</label><input id="fName"></div>
+    <div class="form-row"><label>Industry</label>
+      <select id="fIndustry">
+        <option value="restaurant">Restaurant / Hospitality</option>
+        <option value="consulting">Consulting / Professional Services</option>
+        <option value="manufacturing">Manufacturing / Industrial</option>
+        <option value="realestate">Real Estate</option>
+        <option value="logistics">Logistics / Distribution</option>
+        <option value="healthcare">Healthcare</option>
+        <option value="retail">Retail / E-commerce</option>
+        <option value="legal">Legal</option>
+        <option value="accounting">Accounting / Finance</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="form-row"><label>Employee Count</label><input id="fEmployees" type="number" placeholder="e.g. 150"></div>
+    <div class="form-row"><label>Revenue Estimate</label>
+      <select id="fRevenue">
+        <option value="unknown">Unknown</option>
+        <option value="<1M">&lt;$1M</option>
+        <option value="1-5M">$1M–$5M</option>
+        <option value="5-20M">$5M–$20M</option>
+        <option value="20-50M">$20M–$50M</option>
+        <option value="50M+">$50M+</option>
+      </select>
+    </div>
+    <div class="form-row"><label>Manual Process Signals (check all that apply)</label>
+      <div class="chk-row">
+        <label><input type="checkbox" class="sig" value="No tech stack"> No tech stack</label>
+        <label><input type="checkbox" class="sig" value="Outdated website"> Outdated website</label>
+        <label><input type="checkbox" class="sig" value="Data entry job posts"> Data entry job posts</label>
+        <label><input type="checkbox" class="sig" value="No CRM/ERP"> No CRM/ERP</label>
+        <label><input type="checkbox" class="sig" value="Manual processes mentioned"> Manual processes</label>
+      </div>
+    </div>
+    <div class="form-row"><label>Decision Maker Name</label><input id="fContact" placeholder="e.g. Jane Smith, VP Operations"></div>
+    <div class="form-row"><label>Decision Maker Email</label><input id="fEmail" placeholder="e.g. jane@company.com"></div>
+    <div class="form-row"><label>Notes</label><textarea id="fNotes" placeholder="Any extra context..."></textarea></div>
+    <div class="form-actions">
+      <button class="btn-save" onclick="saveLead()">Save</button>
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEMO_MAP = {
+  restaurant: ['Review Manager','AI Bookkeeper'],
+  consulting: ['Proposal Generator','Cold Email Generator','Scope Tracker'],
+  manufacturing: ['AI ROI Calculator','Scope Tracker','Document Q&A'],
+  realestate: ['Review Manager','Document Q&A'],
+  logistics: ['AI ROI Calculator','Scope Tracker'],
+  healthcare: ['Document Q&A','Non-Compete Checker','Review Manager'],
+  retail: ['Review Manager','AI Bookkeeper'],
+  legal: ['Document Q&A','Non-Compete Checker','Proposal Generator'],
+  accounting: ['AI Bookkeeper','AI ROI Calculator'],
+  other: ['AI ROI Calculator','Cold Email Generator']
+};
+
+let leads = JSON.parse(localStorage.getItem('moltslack_leads') || '[]');
+let editIdx = -1;
+
+// SCORING
+function scoreLead(lead) {
+  // Company size fit (30%) — sweet spot 50-500
+  let sizeScore = 0;
+  const emp = lead.employees || 0;
+  if(emp >= 50 && emp <= 500) sizeScore = 10;
+  else if(emp >= 20 && emp < 50) sizeScore = 6;
+  else if(emp > 500 && emp <= 1000) sizeScore = 5;
+  else if(emp > 1000) sizeScore = 3;
+  else if(emp > 0) sizeScore = 2;
+
+  // Manual signals (30%)
+  const sigCount = (lead.signals || []).length;
+  const sigScore = Math.min(sigCount * 2.5, 10);
+
+  // Demo match clarity (20%) — based on industry being mapped
+  const demos = DEMO_MAP[lead.industry] || [];
+  const demoScore = demos.length > 0 ? 8 : 3;
+
+  // Contact completeness (20%)
+  const hasName = lead.contact && lead.contact.trim().length > 0;
+  const hasEmail = lead.email && lead.email.trim().length > 0;
+  const contactScore = (hasName && hasEmail) ? 10 : hasName ? 5 : hasEmail ? 4 : 0;
+
+  const raw = sizeScore * 0.3 + sigScore * 0.3 + demoScore * 0.2 + contactScore * 0.2;
+  return Math.round(raw * 10) / 10;
+}
+
+function scoreColor(s) {
+  if(s >= 7) return 'var(--green)';
+  if(s >= 4) return 'var(--orange)';
+  return 'var(--red)';
+}
+
+function isReady(lead) {
+  return lead.contact && lead.contact.trim() && lead.email && lead.email.trim();
+}
+
+// RENDER
+function renderStats() {
+  const total = leads.length;
+  const ready = leads.filter(isReady).length;
+  const research = total - ready;
+  const sweet = leads.filter(l => (l.employees||0) >= 50 && (l.employees||0) <= 500).length;
+  const avgScore = total ? (leads.reduce((a,l) => a + scoreLead(l), 0) / total).toFixed(1) : '—';
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat"><div class="val">${total}</div><div class="lbl">Total Leads</div></div>
+    <div class="stat"><div class="val" style="color:var(--green)">${ready}</div><div class="lbl">Ready to Pitch</div></div>
+    <div class="stat"><div class="val" style="color:var(--red)">${research}</div><div class="lbl">Needs Research</div></div>
+    <div class="stat"><div class="val" style="color:var(--blue)">${sweet}</div><div class="lbl">Sweet Spot (50-500)</div></div>
+    <div class="stat"><div class="val" style="color:var(--orange)">${avgScore}</div><div class="lbl">Avg Score</div></div>
+  `;
+}
+
+function renderTable() {
+  const query = document.getElementById('search').value.toLowerCase();
+  const bucket = document.getElementById('filterBucket').value;
+  const sort = document.getElementById('sortBy').value;
+
+  let filtered = leads.map((l,i) => ({...l, _i:i, _score:scoreLead(l)}));
+
+  if(query) filtered = filtered.filter(l => l.name.toLowerCase().includes(query) || (l.industry||'').toLowerCase().includes(query));
+  if(bucket === 'ready') filtered = filtered.filter(l => isReady(l));
+  if(bucket === 'research') filtered = filtered.filter(l => !isReady(l));
+
+  if(sort === 'score') filtered.sort((a,b) => b._score - a._score);
+  else if(sort === 'name') filtered.sort((a,b) => a.name.localeCompare(b.name));
+  else if(sort === 'employees') filtered.sort((a,b) => (b.employees||0) - (a.employees||0));
+  else if(sort === 'contact') filtered.sort((a,b) => (isReady(b)?1:0) - (isReady(a)?1:0));
+
+  const tbody = document.getElementById('leadBody');
+  tbody.innerHTML = filtered.map(l => {
+    const s = l._score;
+    const pct = s * 10;
+    const demos = DEMO_MAP[l.industry] || [];
+    const sigs = (l.signals || []);
+    const ready = isReady(l);
+    const empBadge = (l.employees >= 50 && l.employees <= 500) ? 'badge-green' : (l.employees > 0 ? 'badge-blue' : 'badge-orange');
+    return `<tr ondblclick="openModal(${l._i})">
+      <td><div class="score-bar"><div class="score-fill" style="width:${pct}%;background:${scoreColor(s)}"></div></div><strong style="color:${scoreColor(s)}">${s}</strong></td>
+      <td><strong>${l.name}</strong>${l.notes ? '<br><span style="color:var(--muted);font-size:.78rem">'+l.notes+'</span>' : ''}</td>
+      <td>${l.industry || '—'}</td>
+      <td><span class="badge ${empBadge}">${l.employees || '?'}</span></td>
+      <td>${l.revenue || '?'}</td>
+      <td><div class="signals">${sigs.map(s=>'<span class="signal">'+s+'</span>').join('')}${sigs.length===0?'<span style="color:var(--muted)">None detected</span>':''}</div></td>
+      <td>${demos.map(d=>'<span class="demo-tag">'+d+'</span>').join('')}</td>
+      <td>${ready ? '<span class="ready-flag">✓ '+l.contact+'</span><br><span style="font-size:.8rem;color:var(--muted)">'+l.email+'</span>' : '<span class="gap-flag">⚠ Missing '+(l.contact?'email':'contact')+'</span>'}</td>
+      <td>${ready ? '<span class="badge badge-green">Ready</span>' : '<span class="badge badge-red">Research</span>'}</td>
+    </tr>`;
+  }).join('');
+
+  renderStats();
+}
+
+// MODAL
+function openModal(idx) {
+  editIdx = idx !== undefined ? idx : -1;
+  document.getElementById('modalTitle').textContent = editIdx >= 0 ? 'Edit Lead' : 'Add Lead';
+  if(editIdx >= 0) {
+    const l = leads[editIdx];
+    document.getElementById('fName').value = l.name || '';
+    document.getElementById('fIndustry').value = l.industry || 'other';
+    document.getElementById('fEmployees').value = l.employees || '';
+    document.getElementById('fRevenue').value = l.revenue || 'unknown';
+    document.getElementById('fContact').value = l.contact || '';
+    document.getElementById('fEmail').value = l.email || '';
+    document.getElementById('fNotes').value = l.notes || '';
+    document.querySelectorAll('.sig').forEach(cb => { cb.checked = (l.signals||[]).includes(cb.value); });
+  } else {
+    document.getElementById('fName').value = '';
+    document.getElementById('fIndustry').value = 'restaurant';
+    document.getElementById('fEmployees').value = '';
+    document.getElementById('fRevenue').value = 'unknown';
+    document.getElementById('fContact').value = '';
+    document.getElementById('fEmail').value = '';
+    document.getElementById('fNotes').value = '';
+    document.querySelectorAll('.sig').forEach(cb => { cb.checked = false; });
+  }
+  document.getElementById('modalBg').classList.add('show');
+}
+
+function closeModal() { document.getElementById('modalBg').classList.remove('show'); editIdx = -1; }
+
+function saveLead() {
+  const lead = {
+    name: document.getElementById('fName').value.trim(),
+    industry: document.getElementById('fIndustry').value,
+    employees: parseInt(document.getElementById('fEmployees').value) || 0,
+    revenue: document.getElementById('fRevenue').value,
+    signals: [...document.querySelectorAll('.sig:checked')].map(cb=>cb.value),
+    contact: document.getElementById('fContact').value.trim(),
+    email: document.getElementById('fEmail').value.trim(),
+    notes: document.getElementById('fNotes').value.trim()
+  };
+  if(!lead.name) { alert('Company name required'); return; }
+  if(editIdx >= 0) leads[editIdx] = lead;
+  else leads.push(lead);
+  localStorage.setItem('moltslack_leads', JSON.stringify(leads));
+  closeModal();
+  renderTable();
+}
+
+function exportCSV() {
+  const header = 'Score,Company,Industry,Employees,Revenue,Signals,Demo Match,Contact,Email,Status,Notes';
+  const rows = leads.map(l => {
+    const s = scoreLead(l);
+    const demos = (DEMO_MAP[l.industry]||[]).join('; ');
+    const sigs = (l.signals||[]).join('; ');
+    const status = isReady(l) ? 'Ready' : 'Needs Research';
+    return [s, `"${l.name}"`, l.industry, l.employees||'', l.revenue, `"${sigs}"`, `"${demos}"`, `"${l.contact}"`, l.email, status, `"${l.notes||''}"`].join(',');
+  });
+  const csv = header + '\n' + rows.join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'leads-qualified.csv';
+  a.click();
+}
+
+// Keyboard shortcut
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeModal();
+});
+
+renderTable();
+</script>
+</body>
+</html>
