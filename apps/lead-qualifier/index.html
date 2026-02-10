@@ -169,7 +169,59 @@ const DEMO_MAP = {
   other: ['AI ROI Calculator','Cold Email Generator']
 };
 
-let leads = JSON.parse(localStorage.getItem('moltslack_leads') || '[]');
+// Default leads from leads.csv (auto-load if localStorage empty)
+const DEFAULT_LEADS = [
+{"name":"Horween Leather Company","industry":"manufacturing","employees":100,"revenue":"unknown","signals":[],"contact":"Elena Horween","email":"elena@horween.com","notes":"Order processing - customer service"},
+{"name":"Kronos Foods","industry":"manufacturing","employees":200,"revenue":"unknown","signals":[],"contact":"Pete Parthenis Jr. - CEO","email":"pete.parthenis@gdkfoods.com","notes":"Multi-line production scheduling"},
+{"name":"Bell Flavors & Fragrances","industry":"manufacturing","employees":350,"revenue":"unknown","signals":[],"contact":"Ron Stark - CEO","email":"ron.stark@bellff.com","notes":"Project management - compliance automation"},
+{"name":"Testa Produce","industry":"logistics","employees":200,"revenue":"unknown","signals":[],"contact":"Randy Anderson - COO","email":"randerson@testaproduce.com","notes":"Dynamic pricing - substitution intelligence"},
+{"name":"Lettuce Entertain You","industry":"restaurant","employees":5000,"revenue":"unknown","signals":[],"contact":"Rich Melman - Founder","email":"rich.melman@leye.com","notes":"Guest intelligence - purchasing optimization"},
+{"name":"Lactalis American Group","industry":"manufacturing","employees":3700,"revenue":"unknown","signals":[],"contact":"Tim Redmond - VP Ops","email":"tim.redmond@lactalis.us","notes":"Production scheduling - QC documentation"},
+{"name":"Wirtz/Breakthru Beverage","industry":"logistics","employees":1000,"revenue":"unknown","signals":[],"contact":"Danny Wirtz - VP","email":"danny.wirtz@wirtzbev.com","notes":"Route optimization - order processing"},
+{"name":"Edsal Manufacturing","industry":"manufacturing","employees":350,"revenue":"unknown","signals":[],"contact":"Scott White - CEO","email":"scott.white@edsal.com","notes":"Quote generation automation"},
+{"name":"Cloverhill Bakery","industry":"manufacturing","employees":350,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Production optimization - demand forecasting"},
+{"name":"Chicago Gaming Company","industry":"manufacturing","employees":100,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"BOM management - customer service"},
+{"name":"Chicago Embroidery Company","industry":"manufacturing","employees":125,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"Sales@c-emblem.com","notes":"Quote automation - artwork pre-processing"},
+{"name":"Cresset Capital","industry":"accounting","employees":300,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Client onboarding - report generation"},
+{"name":"Sievert Larsen & Associates","industry":"accounting","employees":100,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Document intake - client communication"},
+{"name":"Cotter Consulting","industry":"consulting","employees":100,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Phase I ESA drafting - lab data management"},
+{"name":"Much Shelist","industry":"legal","employees":150,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Contract review - M&A due diligence"},
+{"name":"Atlas Tool & Die Works","industry":"manufacturing","employees":200,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"sales@atlas-tool.com","notes":"RFQ processing - job scheduling"},
+{"name":"Midwest Mechanical Group","industry":"manufacturing","employees":350,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Smart dispatch - PM automation"},
+{"name":"Chicago Tube & Iron","industry":"logistics","employees":300,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"Sales@chicagotube.com","notes":"Multi-variable quoting - MTR management"},
+{"name":"Belden Brick Company","industry":"manufacturing","employees":500,"revenue":"unknown","signals":[],"contact":"Robert Belden - CEO","email":"robert.belden@beldenbrick.com","notes":"Product selection - sample management"},
+{"name":"ESD (Environmental Systems Design)","industry":"consulting","employees":350,"revenue":"unknown","signals":[],"contact":"","email":"spatel@esdglobal.com","notes":"Specification generation - code compliance"},
+{"name":"Aztec Manufacturing","industry":"manufacturing","employees":100,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Drawing analysis/quoting - traceability"},
+{"name":"Progressive Processing","industry":"manufacturing","employees":125,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Dynamic pricing - scale ticket automation"},
+{"name":"Reliable Fire Equipment","industry":"manufacturing","employees":200,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"fire@reliablefire.com","notes":"Inspection scheduling - report generation"},
+{"name":"Chicago Rivet & Machine","industry":"manufacturing","employees":300,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"sales@chicagorivet.com","notes":"Spec matching - PPAP automation"},
+{"name":"Windy City Wire","industry":"logistics","employees":150,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"info@windycitywire.com","notes":"Cable selection - order automation"},
+{"name":"Lake County Press","industry":"manufacturing","employees":200,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Print job quoting - compliance docs"},
+{"name":"Bulley & Andrews","industry":"manufacturing","employees":200,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"jfreedland@bulley.com","notes":"Condition assessment - material matching"},
+{"name":"Sterling Bay","industry":"realestate","employees":200,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"hello@sterlingbay.com","notes":"Leasing inquiry mgmt - tenant service"},
+{"name":"Garrett Popcorn Shops","industry":"retail","employees":200,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"mcrossland@garrettpopcorn.com","notes":"Corporate gifting automation - e-commerce CS"},
+{"name":"Inland Real Estate Group","industry":"realestate","employees":750,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"custserv@inland-investments.com","notes":"Tenant service - lease administration"},
+{"name":"Douglas Dynamics","industry":"manufacturing","employees":1750,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"info@douglasdynamics.com","notes":"Weather-driven demand forecasting - parts support"},
+{"name":"Midwest Orthopaedics at Rush","industry":"healthcare","employees":350,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Prior auth automation - surgical scheduling"},
+{"name":"Dental Associates (Chicago groups)","industry":"healthcare","employees":125,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Insurance verification - treatment follow-up"},
+{"name":"Advanced Dermatology","industry":"healthcare","employees":125,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Cosmetic rebooking - photo documentation"},
+{"name":"Taft Stettinius & Hollister","industry":"legal","employees":650,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Knowledge management - e-billing compliance"},
+{"name":"Illinois Bone & Joint Institute","industry":"healthcare","employees":750,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Referral management - PT compliance"},
+{"name":"Physicians Immediate Care","industry":"healthcare","employees":450,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Patient intake - occ med automation"},
+{"name":"Freeborn & Peters","industry":"legal","employees":150,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Regulatory tracking - pitch automation"},
+{"name":"Kenny Construction","industry":"manufacturing","employees":450,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Environmental compliance - field reporting"},
+{"name":"Chicago Atlantic Real Estate Finance","industry":"realestate","employees":75,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Loan doc processing - due diligence"},
+{"name":"Graycor","industry":"manufacturing","employees":750,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Workforce matching - safety documentation"},
+{"name":"Pepper Construction","industry":"manufacturing","employees":750,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Commissioning docs - punch list management"},
+{"name":"Grande Cheese Company","industry":"manufacturing","employees":450,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Recurring order automation - QC docs"},
+{"name":"Lake Shore Cryotronics","industry":"manufacturing","employees":300,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Technical product selection - calibration management"},
+{"name":"Allied Products Corporation","industry":"manufacturing","employees":200,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Parts identification - maintenance scheduling"},
+{"name":"Ferrara Candy Company","industry":"manufacturing","employees":5000,"revenue":"unknown","signals":["No CRM/ERP"],"contact":"","email":"customer.service@ferrarausa.com","notes":"Seasonal demand forecasting - retail account mgmt"},
+{"name":"World's Finest Chocolate","industry":"manufacturing","employees":350,"revenue":"unknown","signals":["No tech stack","No CRM/ERP"],"contact":"","email":"","notes":"Fundraiser order automation - customer service"}
+];
+
+let leads = JSON.parse(localStorage.getItem('moltslack_leads') || 'null') || DEFAULT_LEADS;
+if(!localStorage.getItem('moltslack_leads')) localStorage.setItem('moltslack_leads', JSON.stringify(leads));
 let editIdx = -1;
 
 // SCORING
