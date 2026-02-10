@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html><head><title>Load Leads</title></head>
+<body>
+<h2>Loading leads into Lead Qualifier...</h2>
+<pre id="log"></pre>
+<script>
+// Industry mapping from CSV labels to tool's select values
+const INDUSTRY_MAP = {
+  'steel manufacturing': 'manufacturing',
+  'shelving/storage manufacturing': 'manufacturing',
+  'logistics/relocation': 'logistics',
+  'dairy manufacturing': 'manufacturing',
+  'beverage distribution': 'logistics',
+  'commercial construction': 'manufacturing',
+  'residential real estate': 'realestate',
+  'leather manufacturing': 'manufacturing',
+  'food production': 'manufacturing',
+  'flavors/fragrances manufacturing': 'manufacturing',
+  'custom embroidery': 'manufacturing',
+  'commercial bakery': 'manufacturing',
+  'pinball manufacturing': 'manufacturing',
+  'food manufacturing': 'manufacturing',
+  'mediterranean food manufacturing': 'manufacturing',
+  'heavy construction/infrastructure': 'manufacturing',
+  'salt mining/chemical': 'manufacturing',
+  'chocolate manufacturing/fundraising': 'manufacturing',
+  'commercial construction': 'manufacturing',
+  'specialty food/retail': 'retail',
+  'wealth management': 'accounting',
+  'cheese manufacturing': 'manufacturing',
+  'audio equipment manufacturing': 'manufacturing',
+  'steel/metals distribution': 'logistics',
+  'mep engineering': 'consulting',
+  'specialty food distribution': 'logistics',
+  'brick manufacturing': 'manufacturing',
+  'industrial equipment manufacturing': 'manufacturing',
+  'commercial real estate/property mgmt': 'realestate',
+  'accounting/cpa': 'accounting',
+  'tool & die/precision stamping': 'manufacturing',
+  'hvac/mechanical contracting': 'manufacturing',
+  'restaurant group/hospitality': 'restaurant',
+  'steel/metal distribution': 'logistics',
+  'industrial construction': 'manufacturing',
+  'scientific instruments': 'manufacturing',
+  'candy/confections manufacturing': 'manufacturing',
+  'construction/restoration': 'manufacturing',
+  'environmental/heavy civil construction': 'manufacturing',
+  'real estate development': 'realestate',
+  'wire & cable distribution': 'logistics',
+  'commercial printing': 'manufacturing',
+  'cnc machining': 'manufacturing',
+  'commercial re lending': 'realestate',
+  'scrap metal recycling': 'manufacturing',
+  'fire protection/life safety': 'manufacturing',
+  'environmental consulting': 'consulting',
+  'fastener manufacturing': 'manufacturing',
+  'environmental services/waste mgmt': 'logistics',
+  'snow equipment manufacturing': 'manufacturing',
+  'orthopedic surgery': 'healthcare',
+  'primary care/value-based': 'healthcare',
+  'dental practice group': 'healthcare',
+  'dermatology practice': 'healthcare',
+  'law firm (mid-market)': 'legal',
+  'law firm (regional)': 'legal',
+  'foodservice distribution': 'logistics',
+  'orthopedic practice': 'healthcare',
+  'law firm (amlaw 100)': 'legal',
+  'waste management/recycling': 'logistics',
+  'urgent care': 'healthcare',
+  'healthcare system': 'healthcare',
+  'multi-specialty physician group': 'healthcare',
+  'fresh produce distribution': 'logistics',
+  'personal injury law': 'legal',
+};
+
+function parseEmployees(str) {
+  if (!str) return 0;
+  str = str.replace(/[+,]/g, '').trim();
+  const match = str.match(/(\d+)/);
+  if (!match) return 0;
+  const rangeMatch = str.match(/(\d+)\s*[-–]\s*(\d+)/);
+  if (rangeMatch) return Math.round((parseInt(rangeMatch[1]) + parseInt(rangeMatch[2])) / 2);
+  return parseInt(match[1]);
+}
+
+function guessSignals(lead) {
+  const signals = [];
+  // Companies with generic emails likely have no CRM
+  if (lead.email && (lead.email.startsWith('info@') || lead.email.startsWith('sales@') || lead.email.startsWith('service@') || lead.email.startsWith('customer'))) {
+    signals.push('No CRM/ERP');
+  }
+  // No contact name suggests manual/old-school operation
+  if (!lead.contact) {
+    signals.push('No tech stack');
+  }
+  return signals;
+}
+
+const CSV = `"company","industry","employees","location","contact","email","website","pitch_file","ai_opportunity","status"
+"A. Finkl & Sons Steel","Steel Manufacturing","500-1000","Chicago IL","Danielle Smith - Dir Marketing","dsmith@finkl.com","finkl.com","pitches/01-finkl-steel.md","RFQ automation - quote processing","Contacted"
+"Edsal Manufacturing","Shelving/Storage Manufacturing","200-500","Chicago IL","Scott White - CEO","scott.white@edsal.com","edsal.com","pitches/02-edsal-manufacturing.md","Quote generation automation","Contacted"
+"Beltmann Moving and Storage","Logistics/Relocation","200-400","Chicago IL","","greg.petraitis@beltmann.com","beltmann.com","pitches/03-beltmann-logistics.md","Estimate automation - scheduling","Bounced"
+"Lactalis American Group","Dairy Manufacturing","3700+","Chicago IL","Tim Redmond - VP Ops","tim.redmond@lactalis.us","lactalisamericangroup.com","pitches/04-lactalis-american.md","Production scheduling - QC documentation","Contacted"
+"Wirtz/Breakthru Beverage","Beverage Distribution","1000+","Chicago IL","Danny Wirtz - VP","danny.wirtz@wirtzbev.com","breakthrubev.com","pitches/05-wirtz-breakthru-beverage.md","Route optimization - order processing","Contacted"
+"James McHugh Construction","Commercial Construction","500-1000","Chicago IL","","swiley@mchugh.com","mchughconstruction.com","pitches/06-mchugh-construction.md","RFI management - progress reporting","Contacted"
+"Baird & Warner","Residential Real Estate","2000+ agents","Chicago IL","Steve Baird","sbaird@bairdwarner.com","bairdwarner.com","pitches/07-baird-warner-realestate.md","Lead scoring - agent support","Contacted"
+"Horween Leather Company","Leather Manufacturing","50-150","Chicago IL","Elena Horween","elena@horween.com","horween.com","pitches/08-horween-leather.md","Order processing - customer service","Contacted"
+"Eli's Cheesecake","Food Production","51-200","Chicago IL","Marc Schulman - President","marc@elischeesecake.com","elicheesecake.com","pitches/09-elis-cheesecake.md","Order management - demand forecasting","Bounced"
+"Bell Flavors & Fragrances","Flavors/Fragrances Manufacturing","200-500","Northbrook IL","Ron Stark - CEO","ron.stark@bellff.com","bellflavors.com","pitches/10-bell-flavors-fragrances.md","Project management - compliance automation","Contacted"
+"Chicago Embroidery Company","Custom Embroidery","50-200","Chicago IL","","Sales@c-emblem.com","chicagoembroidery.com","pitches/11-chicago-embroidery.md","Quote automation - artwork pre-processing","Contacted"
+"Cloverhill Bakery","Commercial Bakery","200-500","Chicago IL","","","cloverhillbakery.com","pitches/12-cloverhill-bakery.md","Production optimization - demand forecasting",""
+"Chicago Gaming Company","Pinball Manufacturing","50-150","Chicago IL","","","chicagogaming.com","pitches/13-chicago-gaming.md","BOM management - customer service",""
+"Vienna Beef","Food Manufacturing","200-500","Chicago IL","Jack Bodman - CEO","jack.bodman@viennabeef.com","viennabeef.com","pitches/14-vienna-beef.md","Standing order automation - route optimization","Bounced"
+"Kronos Foods","Mediterranean Food Manufacturing","200+","Glendale Heights IL","Pete Parthenis Jr. - CEO","pete.parthenis@gdkfoods.com","kronosfoods.com","pitches/15-kronos-foods.md","Multi-line production scheduling","Contacted"
+"Lettuce Entertain You","Restaurant Group/Hospitality","5000+","Chicago IL","Rich Melman - Founder","rich.melman@leye.com","leye.com","pitches/33-lettuce-entertain.md","Guest intelligence - purchasing optimization","Contacted"
+"Cresset Capital","Wealth Management","200-400","Chicago IL","","","cressetcapital.com","pitches/21-cresset-wealth.md","Client onboarding - report generation",""
+"Sievert Larsen & Associates","Accounting/CPA","50-150","Chicago IL","","","sievertlarsen.com","pitches/30-sievert-larsen.md","Document intake - client communication",""
+"Cotter Consulting","Environmental Consulting","50-150","Chicago IL","","","cotterconsulting.com","pitches/47-cotter-consulting.md","Phase I ESA drafting - lab data management",""
+"Much Shelist","Law Firm (Mid-Market)","100-200","Chicago IL","","","muchlaw.com","pitches/55-much-shelist-law.md","Contract review - M&A due diligence",""
+"Testa Produce","Fresh Produce Distribution","100-300","Chicago IL","Randy Anderson - COO","randerson@testaproduce.com","testaproduce.com","pitches/67-midwest-produce.md","Dynamic pricing - substitution intelligence","Contacted"
+`;
+
+// Parse CSV
+const lines = CSV.trim().split('\n');
+const headers = lines[0].match(/"([^"]*)"/g).map(h => h.replace(/"/g, ''));
+const leads = [];
+
+for (let i = 1; i < lines.length; i++) {
+  const vals = lines[i].match(/"([^"]*)"/g);
+  if (!vals) continue;
+  const row = {};
+  vals.forEach((v, j) => { row[headers[j]] = v.replace(/"/g, ''); });
+  
+  const industryKey = (row.industry || '').toLowerCase();
+  const lead = {
+    name: row.company,
+    industry: INDUSTRY_MAP[industryKey] || 'other',
+    employees: parseEmployees(row.employees),
+    revenue: 'unknown',
+    signals: guessSignals({contact: row.contact, email: row.email}),
+    contact: row.contact || '',
+    email: row.email || '',
+    notes: row.ai_opportunity || ''
+  };
+  leads.push(lead);
+}
+
+// Store
+localStorage.setItem('moltslack_leads', JSON.stringify(leads));
+document.getElementById('log').textContent = `Loaded ${leads.length} leads into localStorage.\n\nNow open index.html to see them scored and sorted.\n\nSample:\n` + JSON.stringify(leads.slice(0, 3), null, 2);
+</script>
+</body>
+</html>
