@@ -1,71 +1,90 @@
-company,industry,employees,location,contact,email,website,pitch_file,ai_opportunity
-A. Finkl & Sons Steel,Steel Manufacturing,500-1000,Chicago IL,Danielle Smith - Dir Marketing & Inside Sales,sales@finkl.com,finkl.com,pitches/01-finkl-steel.md,RFQ automation - quote processing
-Edsal Manufacturing,Shelving/Storage Manufacturing,200-500,Chicago IL,,customerservice@edsal.com,edsal.com,pitches/02-edsal-manufacturing.md,Quote generation automation
-Beltmann Moving and Storage,Logistics/Relocation,200-400,Chicago IL,,,beltmann.com,pitches/03-beltmann-logistics.md,Estimate automation - scheduling
-Lactalis American Group,Dairy Manufacturing,3700+,Chicago IL,,,lactalisamericangroup.com,pitches/04-lactalis-american.md,Production scheduling - QC documentation
-Wirtz/Breakthru Beverage,Beverage Distribution,1000+,Chicago IL,,,breakthrubev.com,pitches/05-wirtz-breakthru-beverage.md,Route optimization - order processing
-James McHugh Construction,Commercial Construction,500-1000,Chicago IL,,swiley@mchugh.com,mchughconstruction.com,pitches/06-mchugh-construction.md,RFI management - progress reporting
-Baird & Warner,Residential Real Estate,2000+ agents,Chicago IL,,referralconnections@bairdwarner.com,bairdwarner.com,pitches/07-baird-warner-realestate.md,Lead scoring - agent support
-Horween Leather Company,Leather Manufacturing,50-150,Chicago IL,,james@horween.com,horween.com,pitches/08-horween-leather.md,Order processing - customer service
-Eli's Cheesecake,Food Production,51-200,Chicago IL,Marc Schulman - President,,elicheesecake.com,pitches/09-elis-cheesecake.md,Order management - demand forecasting
-Bell Flavors & Fragrances,Flavors/Fragrances Manufacturing,200-500,Northbrook IL,,info@bellff.com,bellflavors.com,pitches/10-bell-flavors-fragrances.md,Project management - compliance automation
-Chicago Embroidery Company,Custom Embroidery,50-200,Chicago IL,,Sales@c-emblem.com,chicagoembroidery.com,pitches/11-chicago-embroidery.md,Quote automation - artwork pre-processing
-Cloverhill Bakery,Commercial Bakery,200-500,Chicago IL,,,cloverhillbakery.com,pitches/12-cloverhill-bakery.md,Production optimization - demand forecasting
-Chicago Gaming Company,Pinball Manufacturing,50-150,Chicago IL,,,chicagogaming.com,pitches/13-chicago-gaming.md,BOM management - customer service
-Vienna Beef,Food Manufacturing,200-500,Chicago IL,Jack Bodman - CEO,,viennabeef.com,pitches/14-vienna-beef.md,Standing order automation - route optimization
-Kronos Foods,Mediterranean Food Manufacturing,200+,Glendale Heights IL,,,kronosfoods.com,pitches/15-kronos-foods.md,Multi-line production scheduling
-Walsh Construction,Heavy Construction/Infrastructure,5000-8000,Chicago IL,,,walshgroup.com,pitches/16-walsh-construction.md,Compliance automation - safety documentation
-Morton Salt,Salt Mining/Chemical,2000-3000,Chicago IL,,,mortonsalt.com,pitches/17-morton-salt.md,Weather-driven demand forecasting
-World's Finest Chocolate,Chocolate Manufacturing/Fundraising,200-500,Chicago IL,,,worldsfinestchocolate.com,pitches/18-worlds-finest-chocolate.md,Fundraiser order automation - customer service
-Pepper Construction,Commercial Construction,500-1000,Barrington IL,,,pepperconstruction.com,pitches/19-pepper-construction.md,Commissioning docs - punch list management
-Garrett Popcorn Shops,Specialty Food/Retail,100-300,Chicago IL,,help@garrettpopcorn.com,garrettpopcorn.com,pitches/20-garrett-popcorn.md,Corporate gifting automation - e-commerce CS
-Cresset Capital,Wealth Management,200-400,Chicago IL,,,cressetcapital.com,pitches/21-cresset-wealth.md,Client onboarding - report generation
-Grande Cheese Company,Cheese Manufacturing,300-600,Fond du Lac WI,,,grandecheese.com,pitches/22-grande-cheese.md,Recurring order automation - QC docs
-Shure Incorporated,Audio Equipment Manufacturing,2000+,Niles IL,,,shure.com,pitches/23-shure-incorporated.md,Technical support - product selection - frequency coordination
-Ryerson,Steel/Metals Distribution,3500-4000,Chicago IL,,,ryerson.com,pitches/24-inland-steel.md,RFQ automation - inventory optimization
-ESD (Environmental Systems Design),MEP Engineering,200-500,Chicago IL,,spatel@esdglobal.com,esdglobal.com,pitches/25-henderson-engineers.md,Specification generation - code compliance
-Lipari Foods,Specialty Food Distribution,1500-2000,Warren MI,,,liparifoods.com,pitches/26-lipari-foods.md,Route sales optimization - demand forecasting
-Belden Brick Company,Brick Manufacturing,400-600,Canton OH,,,beldenbrick.com,pitches/27-belden-brick.md,Product selection - sample management
-Allied Products Corporation,Industrial Equipment Manufacturing,100-300,Chicago IL,,,alliedproductscorp.com,pitches/28-allied-products.md,Parts identification - maintenance scheduling
-Inland Real Estate Group,Commercial Real Estate/Property Mgmt,500-1000,Oak Brook IL,,custserv@inland-investments.com,inlandgroup.com,pitches/29-inland-real-estate.md,Tenant service - lease administration
-Sievert Larsen & Associates,Accounting/CPA,50-150,Chicago IL,,,sievertlarsen.com,pitches/30-sievert-larsen.md,Document intake - client communication
-Atlas Tool & Die Works,Tool & Die/Precision Stamping,100-300,Lyons IL,,sales@atlas-tool.com,atlastool.com,pitches/31-atlas-tool.md,RFQ processing - job scheduling
-Midwest Mechanical Group,HVAC/Mechanical Contracting,200-500,Chicago IL,,,midwestmechanical.com,pitches/32-midwest-mechanical.md,Smart dispatch - PM automation
-Lettuce Entertain You,Restaurant Group/Hospitality,5000+,Chicago IL,,,leye.com,pitches/33-lettuce-entertain.md,Guest intelligence - purchasing optimization
-Chicago Tube & Iron,Steel/Metal Distribution,200-400,Romeoville IL,,Sales@chicagotube.com,chicagotube.com,pitches/34-Chicago-tube-iron.md,Multi-variable quoting - MTR management
-Graycor,Industrial Construction,500-1000,Oakbrook Terrace IL,,,graycor.com,pitches/35-graycor.md,Workforce matching - safety documentation
-Lake Shore Cryotronics,Scientific Instruments,200-400,Westerville OH,,,lakeshore.com,pitches/36-lake-shore-cryotronics.md,Technical product selection - calibration management
-Ferrara Candy Company,Candy/Confections Manufacturing,4000-6000,Chicago IL,,customer.service@ferrarausa.com,ferrarausa.com,pitches/37-ferrara-candy.md,Seasonal demand forecasting - retail account mgmt
-Bulley & Andrews,Construction/Restoration,100-300,Chicago IL,,jfreedland@bulley.com,bulley.com,pitches/38-bulley-andrews.md,Condition assessment - material matching
-Kenny Construction,Environmental/Heavy Civil Construction,300-600,Wheeling IL,,,kennyconstruction.com,pitches/39-kenny-construction.md,Environmental compliance - field reporting
-Sterling Bay,Real Estate Development,100-300,Chicago IL,,hello@sterlingbay.com,sterlingbay.com,pitches/40-sterling-bay.md,Leasing inquiry mgmt - tenant service
-Windy City Wire,Wire & Cable Distribution,100-200,East Dundee IL,,info@windycitywire.com,windycitywire.com,pitches/41-windy-city-wire.md,Cable selection - order automation
-Lake County Press,Commercial Printing,100-300,Waukegan IL,,,lakecountypress.com,pitches/42-lake-county-press.md,Print job quoting - compliance docs
-Aztec Manufacturing,CNC Machining,50-150,Elk Grove Village IL,,,aztecmfg.com,pitches/43-aztec-manufacturing.md,Drawing analysis/quoting - traceability
-Chicago Atlantic Real Estate Finance,Commercial RE Lending,50-100,Chicago IL,,,chicagoatlantic.com,pitches/44-chicago-atlantic-real-estate.md,Loan doc processing - due diligence
-Progressive Processing,Scrap Metal Recycling,50-200,Chicago IL,,,progressiveprocessing.com,pitches/45-progressive-processing.md,Dynamic pricing - scale ticket automation
-Reliable Fire Equipment,Fire Protection/Life Safety,100-300,Alsip IL,,fire@reliablefire.com,reliablefire.com,pitches/46-reliable-fire-equipment.md,Inspection scheduling - report generation
-Cotter Consulting,Environmental Consulting,50-150,Chicago IL,,,cotterconsulting.com,pitches/47-cotter-consulting.md,Phase I ESA drafting - lab data management
-Chicago Rivet & Machine,Fastener Manufacturing,200-400,Naperville IL,,sales@chicagorivet.com,chicagorivet.com,pitches/48-chicago-rivet.md,Spec matching - PPAP automation
-Heritage-Crystal Clean,Environmental Services/Waste Mgmt,3000+,Elgin IL,,,crystal-clean.com,pitches/49-heritage-crystal-clean.md,Route optimization - manifest automation
-Douglas Dynamics,Snow Equipment Manufacturing,1500-2000,Milwaukee WI,,,douglasdynamics.com,pitches/50-douglas-dynamics.md,Weather-driven demand forecasting - parts support
-Midwest Orthopaedics at Rush,Orthopedic Surgery,200-500,Chicago IL,,,rushortho.com,pitches/51-midwest-orthopaedics.md,Prior auth automation - surgical scheduling
-Oak Street Health,Primary Care/Value-Based,5000+,Chicago IL,,,oakstreethealth.com,pitches/52-oak-street-health.md,Patient risk stratification - care gap detection
-Dental Associates (Chicago groups),Dental Practice Group,50-200,Chicago IL,,,varies,pitches/53-drs-associates-dental.md,Insurance verification - treatment follow-up
-Advanced Dermatology,Dermatology Practice,50-200,Chicago IL,,,varies,pitches/54-advanced-dermatology.md,Cosmetic rebooking - photo documentation
-Much Shelist,Law Firm (Mid-Market),100-200,Chicago IL,,,muchlaw.com,pitches/55-much-shelist-law.md,Contract review - M&A due diligence
-Taft Stettinius & Hollister,Law Firm (Regional),500-800,Chicago IL,,,taftlaw.com,pitches/56-taft-stettinius.md,Knowledge management - e-billing compliance
-Gordon Food Service,Foodservice Distribution,20000+,Grand Rapids MI,,,gfs.com,pitches/57-gordon-food-service.md,Menu planning - institutional compliance
-Performance Food Group,Foodservice Distribution,30000+,Richmond VA,,communications@pfgc.com,pfgc.com,pitches/58-performance-food-group.md,Product substitution - sales rep enablement
-Illinois Bone & Joint Institute,Orthopedic Practice,500-1000,Chicago IL,,,ibji.com,pitches/59-illinois-bone-joint.md,Referral management - PT compliance
-Polsinelli,Law Firm (AmLaw 100),900+ attorneys,Chicago IL,,,polsinelli.com,pitches/60-polsinelli-law.md,Regulatory monitoring - healthcare transaction DD
-Lakeshore Recycling Systems,Waste Management/Recycling,2000+,Chicago IL,,Service@LRSrecycles.com,lrsrecycles.com,pitches/61-lakeshore-recycling.md,Route optimization - customer service
-Duane Morris LLP,Law Firm (AmLaw 100),800+ attorneys,Chicago IL,,,duanemorris.com,pitches/62-duane-morris-law.md,Document drafting - discovery review
-Physicians Immediate Care,Urgent Care,300-600,Chicago IL,,,physiciansimmediatecare.com,pitches/63-physicians-immediate-care.md,Patient intake - occ med automation
-Reinhart Foodservice,Foodservice Distribution,5000+,Midwest,,,rfreinhart.com,pitches/64-reinhart-foodservice.md,Sales rep product knowledge - onboarding
-Endeavor Health,Healthcare System,25000+,Evanston IL,,,endeavorhealth.org,pitches/65-northshore-university.md,Patient access - referral routing
-Freeborn & Peters,Law Firm (Mid-Market),100-200,Chicago IL,,,freeborn.com,pitches/66-freeborn-peters-law.md,Regulatory tracking - pitch automation
-Testa Produce,Fresh Produce Distribution,100-300,Chicago IL,,madelinea@testaproduce.com,testaproduce.com,pitches/67-midwest-produce.md,Dynamic pricing - substitution intelligence
-PI/Mass Tort Firms (Chicago),Personal Injury Law,50-200,Chicago IL,,,varies,pitches/68-scheck-siress-law.md,Case intake screening - medical records
-US Foods,Foodservice Distribution,30000+,Rosemont IL,,,usfoods.com,pitches/69-food-genius-sysco.md,Menu optimization - sales intelligence
-Duly Health and Care,Multi-Specialty Physician Group,5000+,Downers Grove IL,,patientexperience@duly.com,dulyhealth.com,pitches/70-duly-health.md,Referral optimization - prior auth automation
+"company","industry","employees","location","contact","email","website","pitch_file","ai_opportunity","status"
+"A. Finkl & Sons Steel","Steel Manufacturing","500-1000","Chicago IL","Danielle Smith - Dir Marketing & Inside Sales","sales@finkl.com","finkl.com","pitches/01-finkl-steel.md","RFQ automation - quote processing","BURNED"
+"Edsal Manufacturing","Shelving/Storage Manufacturing","200-500","Chicago IL","","customerservice@edsal.com","edsal.com","pitches/02-edsal-manufacturing.md","Quote generation automation","BURNED"
+"Beltmann Moving and Storage","Logistics/Relocation","200-400","Chicago IL","","","beltmann.com","pitches/03-beltmann-logistics.md","Estimate automation - scheduling",""
+"Lactalis American Group","Dairy Manufacturing","3700+","Chicago IL","","","lactalisamericangroup.com","pitches/04-lactalis-american.md","Production scheduling - QC documentation",""
+"Wirtz/Breakthru Beverage","Beverage Distribution","1000+","Chicago IL","","","breakthrubev.com","pitches/05-wirtz-breakthru-beverage.md","Route optimization - order processing",""
+"James McHugh Construction","Commercial Construction","500-1000","Chicago IL","","swiley@mchugh.com","mchughconstruction.com","pitches/06-mchugh-construction.md","RFI management - progress reporting","BURNED"
+"Baird & Warner","Residential Real Estate","2000+ agents","Chicago IL","","referralconnections@bairdwarner.com","bairdwarner.com","pitches/07-baird-warner-realestate.md","Lead scoring - agent support","BURNED"
+"Horween Leather Company","Leather Manufacturing","50-150","Chicago IL","","james@horween.com","horween.com","pitches/08-horween-leather.md","Order processing - customer service",""
+"Eli's Cheesecake","Food Production","51-200","Chicago IL","Marc Schulman - President","","elicheesecake.com","pitches/09-elis-cheesecake.md","Order management - demand forecasting",""
+"Bell Flavors & Fragrances","Flavors/Fragrances Manufacturing","200-500","Northbrook IL","","info@bellff.com","bellflavors.com","pitches/10-bell-flavors-fragrances.md","Project management - compliance automation",""
+"Chicago Embroidery Company","Custom Embroidery","50-200","Chicago IL","","Sales@c-emblem.com","chicagoembroidery.com","pitches/11-chicago-embroidery.md","Quote automation - artwork pre-processing",""
+"Cloverhill Bakery","Commercial Bakery","200-500","Chicago IL","","","cloverhillbakery.com","pitches/12-cloverhill-bakery.md","Production optimization - demand forecasting",""
+"Chicago Gaming Company","Pinball Manufacturing","50-150","Chicago IL","","","chicagogaming.com","pitches/13-chicago-gaming.md","BOM management - customer service",""
+"Vienna Beef","Food Manufacturing","200-500","Chicago IL","Jack Bodman - CEO","info@viennabeef.com","viennabeef.com","pitches/14-vienna-beef.md","Standing order automation - route optimization","Contacted"
+"Kronos Foods","Mediterranean Food Manufacturing","200+","Glendale Heights IL","","","kronosfoods.com","pitches/15-kronos-foods.md","Multi-line production scheduling",""
+"Walsh Construction","Heavy Construction/Infrastructure","5000-8000","Chicago IL","","","walshgroup.com","pitches/16-walsh-construction.md","Compliance automation - safety documentation",""
+"Morton Salt","Salt Mining/Chemical","2000-3000","Chicago IL","","","mortonsalt.com","pitches/17-morton-salt.md","Weather-driven demand forecasting",""
+"World's Finest Chocolate","Chocolate Manufacturing/Fundraising","200-500","Chicago IL","","","worldsfinestchocolate.com","pitches/18-worlds-finest-chocolate.md","Fundraiser order automation - customer service",""
+"Pepper Construction","Commercial Construction","500-1000","Barrington IL","","","pepperconstruction.com","pitches/19-pepper-construction.md","Commissioning docs - punch list management",""
+"Garrett Popcorn Shops","Specialty Food/Retail","100-300","Chicago IL","","help@garrettpopcorn.com","garrettpopcorn.com","pitches/20-garrett-popcorn.md","Corporate gifting automation - e-commerce CS",""
+"Cresset Capital","Wealth Management","200-400","Chicago IL","","","cressetcapital.com","pitches/21-cresset-wealth.md","Client onboarding - report generation",""
+"Grande Cheese Company","Cheese Manufacturing","300-600","Fond du Lac WI","","","grandecheese.com","pitches/22-grande-cheese.md","Recurring order automation - QC docs",""
+"Shure Incorporated","Audio Equipment Manufacturing","2000+","Niles IL","","","shure.com","pitches/23-shure-incorporated.md","Technical support - product selection - frequency coordination",""
+"Ryerson","Steel/Metals Distribution","3500-4000","Chicago IL","","","ryerson.com","pitches/24-inland-steel.md","RFQ automation - inventory optimization",""
+"ESD (Environmental Systems Design)","MEP Engineering","200-500","Chicago IL","","spatel@esdglobal.com","esdglobal.com","pitches/25-henderson-engineers.md","Specification generation - code compliance",""
+"Lipari Foods","Specialty Food Distribution","1500-2000","Warren MI","","info@liparifoods.com","liparifoods.com","pitches/26-lipari-foods.md","Route sales optimization - demand forecasting","Contacted"
+"Belden Brick Company","Brick Manufacturing","400-600","Canton OH","","","beldenbrick.com","pitches/27-belden-brick.md","Product selection - sample management",""
+"Allied Products Corporation","Industrial Equipment Manufacturing","100-300","Chicago IL","","","alliedproductscorp.com","pitches/28-allied-products.md","Parts identification - maintenance scheduling",""
+"Inland Real Estate Group","Commercial Real Estate/Property Mgmt","500-1000","Oak Brook IL","","custserv@inland-investments.com","inlandgroup.com","pitches/29-inland-real-estate.md","Tenant service - lease administration",""
+"Sievert Larsen & Associates","Accounting/CPA","50-150","Chicago IL","","","sievertlarsen.com","pitches/30-sievert-larsen.md","Document intake - client communication",""
+"Atlas Tool & Die Works","Tool & Die/Precision Stamping","100-300","Lyons IL","","sales@atlas-tool.com","atlastool.com","pitches/31-atlas-tool.md","RFQ processing - job scheduling",""
+"Midwest Mechanical Group","HVAC/Mechanical Contracting","200-500","Chicago IL","","","midwestmechanical.com","pitches/32-midwest-mechanical.md","Smart dispatch - PM automation",""
+"Lettuce Entertain You","Restaurant Group/Hospitality","5000+","Chicago IL","","","leye.com","pitches/33-lettuce-entertain.md","Guest intelligence - purchasing optimization",""
+"Chicago Tube & Iron","Steel/Metal Distribution","200-400","Romeoville IL","","Sales@chicagotube.com","chicagotube.com","pitches/34-Chicago-tube-iron.md","Multi-variable quoting - MTR management",""
+"Graycor","Industrial Construction","500-1000","Oakbrook Terrace IL","","","graycor.com","pitches/35-graycor.md","Workforce matching - safety documentation",""
+"Lake Shore Cryotronics","Scientific Instruments","200-400","Westerville OH","","","lakeshore.com","pitches/36-lake-shore-cryotronics.md","Technical product selection - calibration management",""
+"Ferrara Candy Company","Candy/Confections Manufacturing","4000-6000","Chicago IL","","customer.service@ferrarausa.com","ferrarausa.com","pitches/37-ferrara-candy.md","Seasonal demand forecasting - retail account mgmt",""
+"Bulley & Andrews","Construction/Restoration","100-300","Chicago IL","","jfreedland@bulley.com","bulley.com","pitches/38-bulley-andrews.md","Condition assessment - material matching",""
+"Kenny Construction","Environmental/Heavy Civil Construction","300-600","Wheeling IL","","","kennyconstruction.com","pitches/39-kenny-construction.md","Environmental compliance - field reporting",""
+"Sterling Bay","Real Estate Development","100-300","Chicago IL","","hello@sterlingbay.com","sterlingbay.com","pitches/40-sterling-bay.md","Leasing inquiry mgmt - tenant service",""
+"Windy City Wire","Wire & Cable Distribution","100-200","East Dundee IL","","info@windycitywire.com","windycitywire.com","pitches/41-windy-city-wire.md","Cable selection - order automation",""
+"Lake County Press","Commercial Printing","100-300","Waukegan IL","","","lakecountypress.com","pitches/42-lake-county-press.md","Print job quoting - compliance docs",""
+"Aztec Manufacturing","CNC Machining","50-150","Elk Grove Village IL","","","aztecmfg.com","pitches/43-aztec-manufacturing.md","Drawing analysis/quoting - traceability",""
+"Chicago Atlantic Real Estate Finance","Commercial RE Lending","50-100","Chicago IL","","","chicagoatlantic.com","pitches/44-chicago-atlantic-real-estate.md","Loan doc processing - due diligence",""
+"Progressive Processing","Scrap Metal Recycling","50-200","Chicago IL","","","progressiveprocessing.com","pitches/45-progressive-processing.md","Dynamic pricing - scale ticket automation",""
+"Reliable Fire Equipment","Fire Protection/Life Safety","100-300","Alsip IL","","fire@reliablefire.com","reliablefire.com","pitches/46-reliable-fire-equipment.md","Inspection scheduling - report generation",""
+"Cotter Consulting","Environmental Consulting","50-150","Chicago IL","","","cotterconsulting.com","pitches/47-cotter-consulting.md","Phase I ESA drafting - lab data management",""
+"Chicago Rivet & Machine","Fastener Manufacturing","200-400","Naperville IL","","sales@chicagorivet.com","chicagorivet.com","pitches/48-chicago-rivet.md","Spec matching - PPAP automation",""
+"Heritage-Crystal Clean","Environmental Services/Waste Mgmt","3000+","Elgin IL","","","crystal-clean.com","pitches/49-heritage-crystal-clean.md","Route optimization - manifest automation",""
+"Douglas Dynamics","Snow Equipment Manufacturing","1500-2000","Milwaukee WI","","info@douglasdynamics.com","douglasdynamics.com","pitches/50-douglas-dynamics.md","Weather-driven demand forecasting - parts support","Contacted"
+"Midwest Orthopaedics at Rush","Orthopedic Surgery","200-500","Chicago IL","","","rushortho.com","pitches/51-midwest-orthopaedics.md","Prior auth automation - surgical scheduling",""
+"Oak Street Health","Primary Care/Value-Based","5000+","Chicago IL","","","oakstreethealth.com","pitches/52-oak-street-health.md","Patient risk stratification - care gap detection",""
+"Dental Associates (Chicago groups)","Dental Practice Group","50-200","Chicago IL","","","varies","pitches/53-drs-associates-dental.md","Insurance verification - treatment follow-up",""
+"Advanced Dermatology","Dermatology Practice","50-200","Chicago IL","","","varies","pitches/54-advanced-dermatology.md","Cosmetic rebooking - photo documentation",""
+"Much Shelist","Law Firm (Mid-Market)","100-200","Chicago IL","","","muchlaw.com","pitches/55-much-shelist-law.md","Contract review - M&A due diligence",""
+"Taft Stettinius & Hollister","Law Firm (Regional)","500-800","Chicago IL","","","taftlaw.com","pitches/56-taft-stettinius.md","Knowledge management - e-billing compliance",""
+"Gordon Food Service","Foodservice Distribution","20000+","Grand Rapids MI","","","gfs.com","pitches/57-gordon-food-service.md","Menu planning - institutional compliance",""
+"Performance Food Group","Foodservice Distribution","30000+","Richmond VA","","communications@pfgc.com","pfgc.com","pitches/58-performance-food-group.md","Product substitution - sales rep enablement",""
+"Illinois Bone & Joint Institute","Orthopedic Practice","500-1000","Chicago IL","","","ibji.com","pitches/59-illinois-bone-joint.md","Referral management - PT compliance",""
+"Polsinelli","Law Firm (AmLaw 100)","900+ attorneys","Chicago IL","","","polsinelli.com","pitches/60-polsinelli-law.md","Regulatory monitoring - healthcare transaction DD",""
+"Lakeshore Recycling Systems","Waste Management/Recycling","2000+","Chicago IL","","Service@LRSrecycles.com","lrsrecycles.com","pitches/61-lakeshore-recycling.md","Route optimization - customer service",""
+"Duane Morris LLP","Law Firm (AmLaw 100)","800+ attorneys","Chicago IL","","","duanemorris.com","pitches/62-duane-morris-law.md","Document drafting - discovery review",""
+"Physicians Immediate Care","Urgent Care","300-600","Chicago IL","","","physiciansimmediatecare.com","pitches/63-physicians-immediate-care.md","Patient intake - occ med automation",""
+"Reinhart Foodservice","Foodservice Distribution","5000+","Midwest","","","rfreinhart.com","pitches/64-reinhart-foodservice.md","Sales rep product knowledge - onboarding",""
+"Endeavor Health","Healthcare System","25000+","Evanston IL","","","endeavorhealth.org","pitches/65-northshore-university.md","Patient access - referral routing",""
+"Freeborn & Peters","Law Firm (Mid-Market)","100-200","Chicago IL","","","freeborn.com","pitches/66-freeborn-peters-law.md","Regulatory tracking - pitch automation",""
+"Testa Produce","Fresh Produce Distribution","100-300","Chicago IL","","madelinea@testaproduce.com","testaproduce.com","pitches/67-midwest-produce.md","Dynamic pricing - substitution intelligence",""
+"PI/Mass Tort Firms (Chicago)","Personal Injury Law","50-200","Chicago IL","","","varies","pitches/68-scheck-siress-law.md","Case intake screening - medical records",""
+"US Foods","Foodservice Distribution","30000+","Rosemont IL","","","usfoods.com","pitches/69-food-genius-sysco.md","Menu optimization - sales intelligence",""
+"Duly Health and Care","Multi-Specialty Physician Group","5000+","Downers Grove IL","","patientexperience@duly.com","dulyhealth.com","pitches/70-duly-health.md","Referral optimization - prior auth automation",""
+"Limbach","","","","","robmonteparte@limbachinc.com","","","","Bounced"
+"Bergelectric","","","","","jcrotinger@bergelectric.com","","","","Bounced"
+"Anvil Craft","","","","","ptsklodowsky@anvilcraftcorp.com","","","","Contacted"
+"Hall Street 3PL","","","","","inquiry@hallstreet3pl.com","","","","Contacted"
+"SPI Logistics","","","","","info@spi3pl.com","","","","Contacted"
+"Trans Logistics","","","","","CS@shiptli.com","","","","Contacted"
+"Midwest Freight","","","","","sales@midwestfreightsystems.com","","","","Contacted"
+"Stryder USA","","","","","sales@go-stryder.com","","","","Contacted"
+"Wilson Beverages","","","","","sales@wilsonbeverages.com","","","","Contacted"
+"Palace Foods","","","","","info@palacefoodsinc.com","","","","Bounced"
+"Wos-Wit Foods","","","","","info@wos-wit.com","","","","Contacted"
+"Tecta America","","","","","service@tectaamerica.com","","","","Contacted"
+"MID Construction","","","","","info@midconstruction.com","","","","Contacted"
+"Utility Concrete","","","","","info@utilityconcrete.com","","","","Contacted"
+"Tully Rinckey","","","","","info@tullylegal.com","","","","Contacted"
+"Porte Brown","","","","","info@portebrown.com","","","","Contacted"
+"Mira Plastics","","","","","sales@miraplastics.com","","","","Contacted"
+"United Plastic Molders","","","","","info@unitedplasticmolders.net","","","","Contacted"
+"Edge Logistics","","","","","info@edgeLogistics.com","","","","Contacted"
